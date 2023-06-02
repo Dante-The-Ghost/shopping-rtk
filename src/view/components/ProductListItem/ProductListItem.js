@@ -37,8 +37,8 @@ const ProductListItem = ({
   );
 
   const handleOnCardClick = useCallback(() => {
-    navigate(":id");
-  }, [navigate]);
+    navigate(`${id}`);
+  }, [id, navigate]);
 
   const handleAddToCart = useCallback(
     (event) => {

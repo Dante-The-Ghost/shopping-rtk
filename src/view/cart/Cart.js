@@ -12,9 +12,11 @@ const Cart = ({ cart }) => {
     <>
       <h2>My cart</h2>
       {cart.length === 0 && <p>There are no items in your cart!</p>}
-      {cart.map((product) => (
-        <CartListItem product={product} key={product.id} />
-      ))}
+      <div>
+        {cart.map((product) => (
+          <CartListItem product={product} key={product.id} />
+        ))}
+      </div>
       <h3>Your total: {Number(total).toFixed(2)}$</h3>
     </>
   );

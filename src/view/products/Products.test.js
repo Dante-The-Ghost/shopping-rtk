@@ -1,10 +1,11 @@
-import { render, waitFor, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { mockServer } from "../../mocks/mockServer";
 import { API_BASE_URL } from "../../services/axios";
 import { rest } from "msw";
 import Products from "./Products";
 import store from "../../state/store";
+import { MemoryRouter } from "react-router-dom";
 
 const server = mockServer();
 
@@ -20,7 +21,7 @@ describe("<Products />", () => {
                 id: 1,
                 title: "Alma",
                 price: 42.03,
-                image: "https://picsum.photos/100",
+                thumbnail: "https://picsum.photos/100",
               },
             ],
           })
@@ -30,12 +31,14 @@ describe("<Products />", () => {
 
     render(
       <Provider store={store}>
-        <Products />
+        <MemoryRouter>
+          <Products />
+        </MemoryRouter>
       </Provider>
     );
 
-    await waitFor(() => {
-      expect(screen.getByText("Alma")).toBeInTheDocument();
-    });
+    await screen.findByText("Alma");
+
+    screen.getByText(/42.03/i);
   });
 });
