@@ -13,16 +13,20 @@ import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import classes from "./CartListItem.module.css";
 
 const CartListItem = ({ product, addToCart, removeFromCart }) => {
-  const { id, title, price, image, quantity } = product;
+  const { id, title, price, thumbnail, quantity } = product;
 
   return (
     <Card className={classes.container}>
       <CardMedia
         component="img"
         sx={{ width: "100px", height: "100px" }}
-        image={image}
+        image={thumbnail}
       />
-      <CardHeader title={title} subheader={price} sx={{ width: "100%" }} />
+      <CardHeader
+        title={title}
+        subheader={`${price}$`}
+        sx={{ width: "100%" }}
+      />
       <CardActions>
         <IconButton
           onClick={() => {
