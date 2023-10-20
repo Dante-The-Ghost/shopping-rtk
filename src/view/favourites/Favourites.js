@@ -6,12 +6,15 @@ const FavouritesPage = ({ favourites }) => {
   return (
     <>
       <h1>My favourites</h1>
-      {favourites.length === 0 && <p>You have no favourite products yet!</p>}
-      <div style={{ display: "flex" }}>
-        {favourites.map((product) => (
-          <FavouritesListItem product={product} key={product.id} />
-        ))}
-      </div>
+      {favourites.length === 0 ? (
+        <p>You have no favourite products yet!</p>
+      ) : (
+        <div style={{ display: "flex" }}>
+          {favourites.map((product) => (
+            <FavouritesListItem product={product} key={product.id} />
+          ))}
+        </div>
+      )}
     </>
   );
 };

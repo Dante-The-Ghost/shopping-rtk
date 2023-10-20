@@ -36,6 +36,10 @@ const ProductListItem = ({
     [favourite, id, product, addToFavourites, removeFromFavourites]
   );
 
+  const handleOnCardClick = useCallback(() => {
+    navigate(`${id}`);
+  }, [id, navigate]);
+
   const handleAddToCart = useCallback(
     (event) => {
       event.stopPropagation();
@@ -44,10 +48,6 @@ const ProductListItem = ({
     [addToCart, product]
   );
 
-  const handleOnCardClick = useCallback(() => {
-    navigate(`/product/${id}`);
-  }, [id, navigate]);
-
   return (
     <Card className={classes.container} onClick={handleOnCardClick}>
       <CardMedia
@@ -55,7 +55,11 @@ const ProductListItem = ({
         sx={{ width: "100px", height: "100px" }}
         image={thumbnail}
       />
-      <CardHeader title={title} subheader={`${price}$`} sx={{ width: "100%" }} />
+      <CardHeader
+        title={title}
+        subheader={`${price}$`}
+        sx={{ width: "100%" }}
+      />
       <CardActions>
         <IconButton onClick={handleFavourite}>
           {favourite ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}

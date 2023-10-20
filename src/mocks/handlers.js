@@ -35,9 +35,9 @@ export const handlers = [
       ctx.json({
         id: 1,
         title: "Alma",
+        description: "ALMAAAA",
         price: 42.03,
         thumbnail: "https://picsum.photos/100",
-        description: "ALMAAAAA",
         images: [
           "https://picsum.photos/100",
           "https://picsum.photos/100",

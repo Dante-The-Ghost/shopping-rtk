@@ -22,7 +22,11 @@ const CartListItem = ({ product, addToCart, removeFromCart }) => {
         sx={{ width: "100px", height: "100px" }}
         image={thumbnail}
       />
-      <CardHeader title={title} subheader={price} sx={{ width: "100%" }} />
+      <CardHeader
+        title={title}
+        subheader={`${price}$`}
+        sx={{ width: "100%" }}
+      />
       <CardActions>
         <IconButton
           onClick={() => {

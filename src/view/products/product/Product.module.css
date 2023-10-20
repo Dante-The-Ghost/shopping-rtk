@@ -1,7 +1,23 @@
-.imageContainer img {
-  margin-right: 5px;
+.container {
+  display: flex;
+  width: 100%;
 }
 
-.container {
+.container > img {
+  margin: 10px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.price {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.images img {
   margin: 10px;
 }

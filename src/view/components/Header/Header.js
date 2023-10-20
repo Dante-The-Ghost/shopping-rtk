@@ -23,7 +23,8 @@ const Header = ({ cart }) => {
           <StorefrontIcon />
         </NavLink>
         <NavLink
-          to="products"
+          to="/products"
+          end
           style={({ isActive }) => {
             return {
               textDecoration: isActive ? "underline" : "",
