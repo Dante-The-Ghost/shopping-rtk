@@ -1,8 +1,13 @@
 import { connect } from "react-redux";
-import { getCartData } from "../../state/cart/selectors";
 import CartListItem from "../components/CartListItem/CartListItem";
+import { getCartData } from "../../state/cart/selectors";
 
-const Cart = ({ cart }) => {
+const CartPage = ({ cart }) => {
+  const total = cart.reduce(
+    (total, current) => total + current.price * current.quantity,
+    0
+  );
+
   return (
     <>
       <h2>My cart</h2>
@@ -10,6 +15,7 @@ const Cart = ({ cart }) => {
       {cart.map((product) => (
         <CartListItem product={product} key={product.id} />
       ))}
+      <h3>Your total: {Number(total).toFixed(2)}$</h3>
     </>
   );
 };
@@ -18,4 +24,4 @@ const mapStateProps = (state) => ({
   cart: getCartData(state),
 });
 
-export default connect(mapStateProps)(Cart);
+export default connect(mapStateProps)(CartPage);

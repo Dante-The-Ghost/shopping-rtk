@@ -10,6 +10,7 @@ import {
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useNavigate } from "react-router-dom";
 
 import classes from "./ProductListItem.module.css";
 
@@ -20,29 +21,46 @@ const ProductListItem = ({
   removeFromFavourites,
   addToCart,
 }) => {
-  const { id, title, price, image } = product;
+  const { id, title, price, thumbnail } = product;
+  const navigate = useNavigate();
 
-  const handleFavourite = useCallback(() => {
-    if (!favourite) {
-      addToFavourites(product);
-    } else {
-      removeFromFavourites(id);
-    }
-  }, [favourite, id, product, addToFavourites, removeFromFavourites]);
+  const handleFavourite = useCallback(
+    (event) => {
+      event.stopPropagation();
+      if (!favourite) {
+        addToFavourites(product);
+      } else {
+        removeFromFavourites(id);
+      }
+    },
+    [favourite, id, product, addToFavourites, removeFromFavourites]
+  );
+
+  const handleAddToCart = useCallback(
+    (event) => {
+      event.stopPropagation();
+      addToCart(product);
+    },
+    [addToCart, product]
+  );
+
+  const handleOnCardClick = useCallback(() => {
+    navigate(`/product/${id}`);
+  }, [id, navigate]);
 
   return (
-    <Card className={classes.container}>
+    <Card className={classes.container} onClick={handleOnCardClick}>
       <CardMedia
         component="img"
         sx={{ width: "100px", height: "100px" }}
-        image={image}
+        image={thumbnail}
       />
-      <CardHeader title={title} subheader={price} sx={{ width: "100%" }} />
+      <CardHeader title={title} subheader={`${price}$`} sx={{ width: "100%" }} />
       <CardActions>
         <IconButton onClick={handleFavourite}>
           {favourite ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}
         </IconButton>
-        <IconButton onClick={() => addToCart(product)}>
+        <IconButton onClick={handleAddToCart}>
           <AddShoppingCartIcon />
         </IconButton>
       </CardActions>
